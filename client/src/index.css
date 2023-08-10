@@ -1,4 +1,5 @@
 /* HomeScreenNavBar.css */
+
 @import url('https://fonts.googleapis.com/css2?family=REM&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=REM&display=swap');
 /* General Styles */
@@ -185,7 +186,83 @@ h1, h2 {
 
 /* Style for the "Pay Now" button */
 
+/*  */
 
+.App {
+  background-color: white;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+/* resister screen csss */
+
+
+/* Style the form container as a box */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 90%; /* Adjust the width for responsiveness */
+  margin-top: 70px; /* Center the form horizontally */
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* overflow: hidden; */
+}
+
+/* Style the form header */
+
+
+/* Style the form inputs and icons */
+.form-row {
+  margin: 15px 0;
+  padding: 0 20px;
+}
+
+/* Style the checkbox label */
+.custom-checkbox .custom-control-label::before {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Center the Register button */
+
+
+/* Style the card image */
+.card-image {
+  max-width: 100%;
+}
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
   .navbar-nav {
@@ -225,5 +302,26 @@ h1, h2 {
   }
   .bigImg {
     margin-left: 0;
+  }
+ 
+}
+@media screen and (max-width: 768px) {
+  .card {
+    width: 90%; /* Make the form slightly narrower on smaller screens */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .h1 {
+    font-size: 18px;
+  }
+  
+  .custom-checkbox .custom-control-label::before {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .card {
+    padding: 10px;
   }
 }

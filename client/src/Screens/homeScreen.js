@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import video from '../Assets/Wave.mp4';
 import Room from '../Components/room';
-
+import Loading from '../Components/Loading';
+import Error from '../Components/Error';
 function HomeScreen() {
   
   const [rooms, setRooms] = useState([]);
@@ -16,6 +17,7 @@ function HomeScreen() {
         console.log(response.data);
         setRooms(response.data);
         setLoading(false);
+
       } catch (error) {
         setError(true);
         console.error(error);
@@ -51,15 +53,16 @@ function HomeScreen() {
       <div className='container'>
         <div className='row justify-content-center mt-5'>
           {loading ? (
-            <h2>Loading.....</h2>
-          ) : error ? (
-            <h3>Error...</h3>
-          ) : (
+            <h2><Loading/></h2>
+          ) : rooms ? (
             rooms.map((room) => (
               <div className='col-md-9 mt-2' key={room._id}>
                 <Room room={room} />
               </div>
             ))
+          ) : (
+            <Error/>
+            
           )}
         </div>
       </div>

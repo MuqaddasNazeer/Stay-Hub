@@ -5,6 +5,9 @@ import About from './Components/about';
 import NavBar from './Components/navBar';
 import HomeScreen from './Screens/homeScreen';
 import RoomBookingScreen from './Screens/roomBookingScreen';
+import LoginScreen from './Screens/LoginScreen';
+import RegisterScreen from './Screens/RegisterScreen';
+import "bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
   return (
@@ -13,7 +16,11 @@ function App() {
         <NavBar />
         <Route exact path="/" component={HomeScreen} />
         <Route path="/book/:roomid" component={RoomBookingScreen} />
-        {/* <Route exact path="/about" component={About} /> */}
+        {/* <Route exact path="/login" component={LoginScreen} /> */}
+        <Route exact path="/register" component={RegisterScreen} />
+        <Route exact path="/login" component={LoginScreen } />
+
+
       </div>
     </BrowserRouter>
   );
