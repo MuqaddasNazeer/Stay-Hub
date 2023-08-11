@@ -23,7 +23,7 @@ function SignInForm() {
       const result = await axios.post('/api/users/login', user);
       setLoading(false);
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-      history.push('/'); // Redirect to the home screen
+      history.push('/home'); // Redirect to the home screen
       console.log(result);
     } catch (error) {
       console.log(error);

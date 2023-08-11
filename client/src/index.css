@@ -294,7 +294,15 @@ label {
   opacity: 1;
   transform: translateY(0);
 }
-
+.landing{
+  height: 88vh;
+  background-color: black !important;
+ 
+}
+.landinbtn{
+  background-color: white !important;
+  color: black !important;
+}
 .custom-dropdown:not(.show) {
   display: none;
   opacity: 0;
