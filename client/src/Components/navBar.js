@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 function NavBar() {
   const user = JSON.parse(localStorage.getItem('currentUser'));
+  console.log('User:', user);
+
+  function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = '/login';
+  }
+
+  // State to manage the dropdown status
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
@@ -18,15 +33,16 @@ function NavBar() {
         </button>
         <div className="collapse navbar-collapse reg-logg" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-            {user ? (
-              <li className="nav-item dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {user && user.name ? (
+              <li className={`nav-item dropdown ${dropdownOpen ? 'show' : ''}`} style={{ marginRight: '7rem' }}>
+                <button className="btn btn-default dropdown-toggle" type="button" onClick={toggleDropdown}>
+                <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff",marginRight:'10px' }} />
                   {user.name}
                 </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">Bookings</a>
-                  <a className="dropdown-item" href="#">Logout</a>
-                </div>
+                <ul className={`dropdown-menu custom-dropdown ${dropdownOpen ? 'show' : ''} dropdown-menu-right`}>
+                  <li><a href="#">Bookings</a></li>
+                  <li><a href="#" onClick={logout}>Logout</a></li>
+                </ul>
               </li>
             ) : (
               <>
