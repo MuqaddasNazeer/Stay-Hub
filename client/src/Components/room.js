@@ -32,7 +32,7 @@ function Room(props) {
           <Link to={`/book/${props.room._id}`}>
             <button className='btn btn-primary m-2'>Book Now</button>
           </Link>
-          <button className='btn btn-primary' onClick={handleShow}>View Details</button>
+          <button className='btn btn-primary' onClick={handleShow} style={{marginBottom:'7px'}}>View Details</button>
         </div>
 
         <Modal show={show} onHide={handleClose} size='lg'>
