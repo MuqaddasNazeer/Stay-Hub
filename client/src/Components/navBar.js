@@ -36,12 +36,16 @@ function NavBar() {
             {user && user.name ? (
               <li className={`nav-item dropdown ${dropdownOpen ? 'show' : ''}`} style={{ marginRight: '7rem' }}>
                 <button className="btn btn-default dropdown-toggle" type="button" onClick={toggleDropdown}>
-                <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff",marginRight:'10px' }} />
+                  <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", marginRight: '10px' }} />
                   {user.name}
                 </button>
                 <ul className={`dropdown-menu custom-dropdown ${dropdownOpen ? 'show' : ''} dropdown-menu-right`}>
-                  <li><a href="#">Bookings</a></li>
-                  <li><a href="#" onClick={logout}>Logout</a></li>
+                  <li>
+                    <Link to="/bookings">Bookings</Link>
+                  </li>
+                  <li>
+                    <Link to="#" onClick={logout}>Logout</Link>
+                  </li>
                 </ul>
               </li>
             ) : (

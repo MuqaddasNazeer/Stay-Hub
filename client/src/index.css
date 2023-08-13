@@ -299,9 +299,20 @@ label {
   background-color: black !important;
  
 }
+
 .landinbtn{
   background-color: white !important;
   color: black !important;
+}
+
+.datepicker{
+  /* text-align: center; */
+  /* margin-left: 500px; */
+  /* margin-top: -5px; */
+  align-items: center;
+  text-align: center;
+  /* margin-left: 200px; */
+
 }
 .custom-dropdown:not(.show) {
   display: none;

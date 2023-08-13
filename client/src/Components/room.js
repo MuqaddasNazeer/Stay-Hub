@@ -3,13 +3,18 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
+import moment from 'moment'; // Import the moment library
 
-function Room(props) {
-  const { imageUrls, name, maxMemberCount, phoneNumber, type, rate, description } = props.room;
+function Room({ room, fromDate, toDate }) {
+  const { imageUrls, name, maxMemberCount, phoneNumber, type, rate, description } = room;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // Set initial dates here
+  const selectedFromDate = moment();
+  const selectedToDate = moment().add(1, 'days');
 
   return (
     <div className='row bs'>
@@ -29,10 +34,15 @@ function Room(props) {
           <p>Rating: {rate}</p>
         </b>
         <div style={{ float: 'right' }}>
-          <Link to={`/book/${props.room._id}`}>
+          {(fromDate && toDate) && (
+            <Link to={`/book/${room._id}/${selectedFromDate.format('DD-MM-YYYY')}/${selectedToDate.format('DD-MM-YYYY')}`}>
             <button className='btn btn-primary m-2'>Book Now</button>
           </Link>
-          <button className='btn btn-primary' onClick={handleShow} style={{marginBottom:'8px'}}>View Details</button>
+          )}
+
+          <button className='btn btn-primary' onClick={handleShow} style={{ marginBottom: '8px' }}>
+            View Details
+          </button>
         </div>
 
         <Modal show={show} onHide={handleClose} size='lg'>
@@ -50,7 +60,7 @@ function Room(props) {
             <p>{description}</p>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant='secondary' onClick={handleClose}>
               Close
             </Button>
           </Modal.Footer>

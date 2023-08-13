@@ -4,12 +4,18 @@ import video from '../Assets/Wave.mp4';
 import Room from '../Components/room';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
+import moment from 'moment'
+// import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'// import 'antd/dist/antd.css';
+import { DatePicker, Space } from 'antd';
+const { RangePicker } = DatePicker;
+
 function HomeScreen() {
-  
+
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
-
+  const [fromDate, setFromDate] = useState();
+  const [toDate, setToDate] = useState();
   useEffect(() => {
     async function fetchRooms() {
       try {
@@ -27,11 +33,17 @@ function HomeScreen() {
 
     fetchRooms();
   }, []);
-
+  function filterByDate(dates) {
+    // console.log(moment(dates[0]).format('DD-MM-YYYY'));
+    // console.log(moment(dates[1]).format('DD-MM-YYYY'));
+    setFromDate(moment(dates[0]).format('DD-MM-YYYY'));
+    setToDate(moment(dates[1]).format('DD-MM-YYYY'))
+  }
   return (
     <div>
-      <section className='homeScreenVideo'>
-        <div className='overlay'></div>
+
+      <section className='homeScreenVideo mt-5' >
+
         <video src={video} muted autoPlay loop type="video/mp4"></video>
         <div className='homeContent Container'>
           <div className='textDiv'>
@@ -43,26 +55,37 @@ function HomeScreen() {
           </div>
           <div className='cardDiv grid'>
             <div className='destinationInput'>
-              <label htmlFor='city'>Search your destination</label>
-              {/* Your destination input form */}
+              <div>
+                <h1 className='searchyourdestinationlbl'>Enter Your Desire Date</h1>
+                <div className='row'>
+                  <div className='col-md-3'>
+                    <div className='datepicker'>
+                      <RangePicker format='DD-MM-YYYY' onChange={filterByDate} />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <div className='container'>
+
         <div className='row justify-content-center mt-5'>
           {loading ? (
-            <h2><Loading/></h2>
+            <h2><Loading /></h2>
           ) : rooms ? (
             rooms.map((room) => (
               <div className='col-md-9 mt-2' key={room._id}>
-                <Room room={room} />
+                <Room room={room} fromDate={fromDate} toDate={toDate} />
               </div>
             ))
+
           ) : (
-            <Error/>
-            
+            <Error />
+
           )}
         </div>
       </div>
