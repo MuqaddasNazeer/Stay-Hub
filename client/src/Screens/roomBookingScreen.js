@@ -71,7 +71,7 @@ function RoomBookingScreen() {
             setLoading(false);
             setError(true);
             console.log(error);
-            Swal.fire('oops!', 'something went wring', 'error')
+            Swal.fire('OOPS!', 'something went wrong', 'error')
 
         }
     }

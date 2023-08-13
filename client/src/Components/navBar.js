@@ -41,7 +41,7 @@ function NavBar() {
                 </button>
                 <ul className={`dropdown-menu custom-dropdown ${dropdownOpen ? 'show' : ''} dropdown-menu-right`}>
                   <li>
-                    <Link to="/bookings">Bookings</Link>
+                    <Link to="/bookings">My Profile</Link>
                   </li>
                   <li>
                     <Link to="#" onClick={logout}>Logout</Link>

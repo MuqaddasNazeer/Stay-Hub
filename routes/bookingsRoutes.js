@@ -59,5 +59,30 @@ router.post("/bookroom", async (req, res) => {
         return res.status(400).json({ error: 'An error occurred during payment processing.' });
     }
 });
+router.get('/getBookingsByUserId', async (req, res) => {
+    const userid = req.body.userid;
 
+    try {
+        const bookings = await Booking.find({ userid: userid });
+        console.log('Fetched Bookings:', bookings);
+        res.send(bookings);
+    } catch (error) {
+        console.error('Error Fetching Bookings:', error);
+        return res.status(400).json({ error });
+    }
+});
+
+router.get('/getAllBookings', async (req, res) => {
+
+    try {
+        const bookings = await Booking.find();
+        console.log('Fetched Bookings:', bookings);
+        res.send(bookings);
+    } catch (error) {
+        console.error('Error Fetching Bookings:', error);
+        return res.status(400).json({ error });
+    }
+});
+
+  
 module.exports = router;

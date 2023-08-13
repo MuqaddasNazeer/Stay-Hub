@@ -9,6 +9,7 @@ import NavBar from './Components/navBar';
 import LandingScreen from './Screens/LandingScreen';
 import moment from 'moment';
 import ProfileScreen from './Screens/profileScreen';
+import AdminPortal from './Screens/adminPortal';
 
 function App() {
   const selectedFromDate = moment(); // You can set an initial date here
@@ -23,11 +24,12 @@ function App() {
             {/* Pass the defined props */}
             <HomeScreen selectedFromDate={selectedFromDate} selectedToDate={selectedToDate} />
           </Route>
-          <Route path="/" component={LandingScreen} />
+          {/* <Route path="/" component={LandingScreen} /> */}
           <Route path="/book/:roomid/:fromDate/:toDate" component={RoomBookingScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/login" component={LoginScreen} />
           <Route path= "/bookings" component= {ProfileScreen}/>
+          <Route path= "/admin" component= {AdminPortal}/>
         </Switch>
       </BrowserRouter>
     </div>
