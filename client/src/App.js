@@ -24,7 +24,7 @@ function App() {
             {/* Pass the defined props */}
             <HomeScreen selectedFromDate={selectedFromDate} selectedToDate={selectedToDate} />
           </Route>
-          {/* <Route path="/" component={LandingScreen} /> */}
+          <Route path="/" component={LandingScreen} />
           <Route path="/book/:roomid/:fromDate/:toDate" component={RoomBookingScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/login" component={LoginScreen} />

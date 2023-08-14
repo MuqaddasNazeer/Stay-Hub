@@ -4,16 +4,18 @@ import { Tabs } from 'antd';
 import axios from 'axios'
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
+import { set } from 'mongoose';
+import Swal from 'sweetalert2'
 
 function AdminPortal() {
-    useEffect(() =>{
-        if(!JSON.parse(localStorage.getItem("currentUser")).isAdmin){
+    useEffect(() => {
+        if (!JSON.parse(localStorage.getItem("currentUser")).isAdmin) {
             window.location.href = '/home'
         }
     })
     return (
         <div>
-            <div className='ml-5 mr-5 bs mt-5'>
+            <div className=''>
                 <div className='text-center bs'><b>Admin Dashboard</b>
                     <Tabs defaultActiveKey="1">
                         <Tabs.TabPane
@@ -48,7 +50,7 @@ function AdminPortal() {
                             }
                             key="3"
                         >
-                          <Rooms/>  {/* Replace with your component */}
+                            <Rooms />  {/* Replace with your component */}
                         </Tabs.TabPane>
                         <Tabs.TabPane
                             tab={
@@ -59,7 +61,7 @@ function AdminPortal() {
                             }
                             key="4"
                         >
-                            {/* Replace with your component */}
+                           < AddRoom/> {/* Replace with your component */}
                         </Tabs.TabPane>
                         <Tabs.TabPane
                             tab={
@@ -70,7 +72,7 @@ function AdminPortal() {
                             }
                             key="5"
                         >
-                            <Users/>
+                            <Users />
                             {/* Replace with your component */}
                         </Tabs.TabPane>
                     </Tabs>
@@ -222,7 +224,7 @@ export function Users() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                setLoading(true); 
+                setLoading(true);
                 const data = await axios.get('/api/users/getAllUsers');
                 setUsers(data.data);
                 setLoading(false);
@@ -251,7 +253,7 @@ export function Users() {
                                 <th>Email</th>
                                 <th>Password</th>
                                 <th>Is Admin</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
@@ -273,4 +275,153 @@ export function Users() {
     );
 }
 
+
+
+
+
+export function AddRoom() {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [name, setName] = useState('');
+    const [rentPerDay, setRentPerDay] = useState('');
+    const [maxMemberCount, setMaxMemberCount] = useState('');
+    const [desciption, setDescription] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [imageUrl1, setImageUrl1] = useState('');
+    const [imageUrl2, setImageUrl2] = useState('');
+    const [imageUrl3, setImageUrl3] = useState('');
+    const [type, setType] = useState('');
+    const [rate, setRating] = useState('');
+
+    const addRoom = async () => {
+        const newRoom = {
+            name,
+            rentPerDay,
+            maxMemberCount,
+            desciption,
+            phoneNumber,
+            type,
+            imageUrls: [imageUrl1, imageUrl2, imageUrl3],
+            rate
+        };
+
+        try {
+            setLoading(true);
+            const result = await axios.post('/api/rooms/addRoom', newRoom);
+            setLoading(false);
+
+            if (result.data) {
+                Swal.fire('Congrats', 'Your Room Added Successfully', 'success').then(() => {
+                    window.location.href = '/home';
+                });
+            }
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+            setError(true);
+            Swal.fire('Oops', 'Enter Valid Credentials', 'error');
+        }
+    };
+
+    return (
+        <div className="add-room-container">
+            <div className="add-room-form">
+                <h2>Add a New Room</h2>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Room Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="Rent Per Day"
+                        value={rentPerDay}
+                        onChange={(e) => setRentPerDay(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="Max Members"
+                        value={maxMemberCount}
+                        onChange={(e) => setMaxMemberCount(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <textarea
+                        className="form-control"
+                        placeholder="Description"
+                        value={desciption}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="tel"
+                        className="form-control"
+                        placeholder="Phone Number"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Type"
+                        value={type}
+                        onChange={(e) => setType(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Image URL 1"
+                        value={imageUrl1}
+                        onChange={(e) => setImageUrl1(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Image URL 2"
+                        value={imageUrl2}
+                        onChange={(e) => setImageUrl2(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Image URL 3"
+                        value={imageUrl3}
+                        onChange={(e) => setImageUrl3(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="Rating (1-5)"
+                        value={rate}
+                        onChange={(e) => setRating(e.target.value)}
+                    />
+                </div>
+                <button className="btn btn-primary" onClick={addRoom}>
+                    {loading ? 'Adding...' : 'Add Room'}
+                </button>
+                {error && <p className="error-message">An error occurred. Please try again later.</p>}
+            </div>
+        </div>
+    );
+}
 
