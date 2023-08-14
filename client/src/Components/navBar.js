@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import logo from '../logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-
 function NavBar() {
   const user = JSON.parse(localStorage.getItem('currentUser'));
   console.log('User:', user);
