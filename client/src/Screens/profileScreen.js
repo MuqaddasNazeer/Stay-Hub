@@ -26,10 +26,16 @@ function ProfileScreen() {
           }
           key="1"
         >
-          <br />
-          <h1>Name : {user.name}</h1>
-          <h1>Email : {user.email}</h1>
-          <h1>Admin : {user.isAdmin ? 'Yes' : 'No'}</h1>
+          <h1 className='text-center bs'><b>My Profile</b></h1>
+          <div className='row bs'>
+            <div className='col-md-6'>
+              <br />
+              <p><b>Name :</b> {user.name}</p>
+              <p><b>Email :</b> {user.email}</p>
+              <p><b>Admin :</b> {user.isAdmin ? 'Yes' : 'No'}</p>
+              {/* <p><b>Password :</b> {user.password}</p> */}
+            </div>
+          </div>
         </Tabs.TabPane>
         <Tabs.TabPane
           tab={
@@ -92,20 +98,20 @@ export function MyBookings() {
       <div className='row bs'>
         <div className='col-md-6'>
           {loading && <Loading />}
-         
+
           {bookings && bookings.length === 0 ? (
             <p>No booking available. </p>
           ) : (
             bookings.map(booking => (
               <div key={booking._id} className='bs'>
-               <p><b>Room BookerName :</b> {user.name}</p>
-               <p><b>Booker Id :</b>{user._id}</p>
-               <p><b>Booking Id :</b> {booking._id}</p>
-               <p><b>RoomId : </b> {booking.roomid}</p>
+                <p><b>Room BookerName :</b> {user.name}</p>
+                <p><b>Booker Id :</b>{user._id}</p>
+                {/* <p><b>Room Name :</b> {}</p> */}
+                <p><b>RoomId : </b> {booking.roomid}</p>
                 <p><b>FromDate :</b>{booking.fromDate}</p>
                 <p><b>ToDate :</b>{booking.toDate}</p>
                 <p><b>Amount :</b>{booking.totalAmount}</p>
-                <p><b>Status :</b> {booking.status === 'booked' ? 'Confirmed!' : 'Canceled' }</p>
+                <p><b>Status :</b> {booking.status === 'booked' ? 'Confirmed!' : 'Canceled'}</p>
               </div>
             ))
           )}

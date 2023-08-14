@@ -320,6 +320,29 @@ label {
   transform: translateY(-10px);
   transition: opacity 0.3s, transform 0.3s;
 }
+/* Add this CSS to your existing stylesheet or create a new CSS file */
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bookings-table th,
+.bookings-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.bookings-table thead {
+  background-color: #777; /* Change to gray color */
+  color: white;
+}
+
+.bookings-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
@@ -361,6 +384,18 @@ label {
   .bigImg {
     margin-left: 0;
   }
+  .bookings-table {
+    font-size: 14px;
+}
+
+.bookings-table th,
+.bookings-table td {
+    padding: 8px;
+}
+
+.bookings-table thead {
+    font-size: 16px;
+}
  
 }
 @media screen and (max-width: 768px) {
