@@ -44,7 +44,7 @@ function NavBar() {
                     <Link to="/bookings">My Profile</Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={logout}>Logout</Link>
+                    <Link to="/login" onClick={logout}>Logout</Link>
                   </li>
                 </ul>
               </li>

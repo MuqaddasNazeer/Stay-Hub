@@ -5,6 +5,7 @@ import Room from '../Components/room';
 import Loading from '../Components/Loading';
 import Error from '../Components/Error';
 import moment from 'moment'
+import foodeatingvideo from '../Assets/foodeting.jpeg'
 // import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'// import 'antd/dist/antd.css';
 import { DatePicker, Space } from 'antd';
 const { RangePicker } = DatePicker;
@@ -43,7 +44,6 @@ function HomeScreen() {
     <div>
 
       <section className='homeScreenVideo mt-5' >
-
         <video src={video} muted autoPlay loop type="video/mp4"></video>
         <div className='homeContent Container'>
           <div className='textDiv'>
@@ -70,25 +70,71 @@ function HomeScreen() {
           </div>
         </div>
       </section>
+      <section className='roomSection'>
+        <h1 className='bs text-center'style={{border:'3px solid black'}}>Avaliable Rooms</h1>
 
-      <div className='container'>
+        <div className='container'>
 
-        <div className='row justify-content-center mt-5'>
-          {loading ? (
-            <h2><Loading /></h2>
-          ) : rooms ? (
-            rooms.map((room) => (
-              <div className='col-md-9 mt-2' key={room._id}>
-                <Room room={room} fromDate={fromDate} toDate={toDate} />
-              </div>
-            ))
+          <div className='row justify-content-center mt-5'>
+            {loading ? (
+              <h2><Loading /></h2>
+            ) : rooms ? (
+              rooms.map((room) => (
+                <div className='col-md-9 mt-2' key={room._id}>
+                  <Room room={room} fromDate={fromDate} toDate={toDate} />
+                </div>
+              ))
 
-          ) : (
-            <Error />
+            ) : (
+              <Error />
 
-          )}
+            )}
+          </div>
         </div>
-      </div>
+      </section>
+      <section>
+        <div className="services">
+          <div className="container">
+            <div className="heading">
+              <h1 className="bs text-center " style={{border:'3px solid black'}}>SERVICES</h1>
+              <p>Our Hotel is among top-rated hotels which provide very smooth and comfortable rooms with excellent services and also at a low cost</p>
+            </div>
+            <div className="content bs">
+              <div className="boxes-container">
+                <div className="box">
+                  <div className="text">
+                    <i className="fa-solid fa-champagne-glasses"></i>
+                    <h3>Delicious Food</h3>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="text">
+                    <i className="fa-solid fa-person-biking"></i>
+                    <h3>Fitness</h3>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="text">
+                    <i className="fa-solid fa-utensils"></i>
+                    <h3>Fam Restaurant</h3>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="text">
+                    <i className="fa-solid fa-spa"></i>
+                    <h3>Beauty Spa</h3>
+                  </div>
+                </div>
+              </div>
+              <div className="image-container">
+                <img src={foodeatingvideo} alt="Food Eating" className="img" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
     </div>
   );
 }

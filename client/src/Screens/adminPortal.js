@@ -18,17 +18,7 @@ function AdminPortal() {
             <div className=''>
                 <div className='text-center bs'><b>Admin Dashboard</b>
                     <Tabs defaultActiveKey="1">
-                        <Tabs.TabPane
-                            tab={
-                                <span>
-                                    <UserOutlined />
-                                    My Profile
-                                </span>
-                            }
-                            key="1"
-                        >
-                            {/* Content for My Profile */}
-                        </Tabs.TabPane>
+                       
                         <Tabs.TabPane
                             tab={
                                 <span>
@@ -36,7 +26,7 @@ function AdminPortal() {
                                     Manage Bookings
                                 </span>
                             }
-                            key="2"
+                            key="1"
                         >
                             <Bookings />
                             {/* Replace with your component */}
@@ -48,7 +38,7 @@ function AdminPortal() {
                                     Manage Rooms
                                 </span>
                             }
-                            key="3"
+                            key="2"
                         >
                             <Rooms />  {/* Replace with your component */}
                         </Tabs.TabPane>
@@ -59,7 +49,7 @@ function AdminPortal() {
                                     Add Room
                                 </span>
                             }
-                            key="4"
+                            key="3"
                         >
                            < AddRoom/> {/* Replace with your component */}
                         </Tabs.TabPane>
@@ -70,7 +60,7 @@ function AdminPortal() {
                                     Manage Users
                                 </span>
                             }
-                            key="5"
+                            key="4"
                         >
                             <Users />
                             {/* Replace with your component */}
